@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -30,16 +33,27 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding {
+            enabled = true
+        }
+    }
 }
 
 dependencies {
+    implementation(Lib.kotlinStdLib)
+    implementation(Lib.androidxCoreKtx)
+    implementation(Lib.androidxAppCompat)
+    implementation(Lib.material)
+    implementation(Lib.androidxConstraintLayout)
+    implementation(Lib.navigationFragment)
+    implementation(Lib.navigationKtx)
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    kapt(Lib.daggerCompiler)
+    kapt(Lib.daggerAndroidProcessor)
+    implementation(Lib.daggerAndroidSupport)
+
+    testImplementation(TestLib.junit)
+    androidTestImplementation(TestLib.androidxTestJunit)
+    androidTestImplementation(TestLib.androidxTestEspresso)
 }
