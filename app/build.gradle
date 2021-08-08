@@ -44,14 +44,24 @@ dependencies {
     implementation(Lib.kotlinStdLib)
     implementation(Lib.androidxCoreKtx)
     implementation(Lib.androidxAppCompat)
-    implementation(Lib.material)
     implementation(Lib.androidxConstraintLayout)
+
+    implementation(Lib.material)
+
     implementation(Lib.navigationFragment)
     implementation(Lib.navigationKtx)
 
     kapt(Lib.daggerCompiler)
     kapt(Lib.daggerAndroidProcessor)
     implementation(Lib.daggerAndroidSupport)
+
+    implementation(Lib.retrofit)
+    implementation(Lib.retrofitGson)
+    implementation(Lib.retrofitAdapter)
+
+    implementation(Lib.rxJava)
+    implementation(Lib.rxAndroid)
+    implementation(Lib.rxKotlin)
 
     testImplementation(TestLib.junit)
     androidTestImplementation(TestLib.androidxTestJunit)

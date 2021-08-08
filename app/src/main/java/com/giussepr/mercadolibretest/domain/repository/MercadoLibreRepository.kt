@@ -1,0 +1,3 @@
+package com.giussepr.mercadolibretest.domain.repository
+
+interface MercadoLibreRepository

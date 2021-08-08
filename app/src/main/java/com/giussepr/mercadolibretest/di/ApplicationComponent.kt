@@ -12,7 +12,9 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     ApplicationModule::class,
-    FragmentBindingModule::class
+    FragmentBindingModule::class,
+    NetModule::class,
+    RepositoryModule::class
 ])
 interface ApplicationComponent: AndroidInjector<MercadoLibreTestApp> {
 
