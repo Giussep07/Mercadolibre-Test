@@ -26,7 +26,15 @@ class HomePresenterImpl @Inject constructor(
     }
 
     override fun searchItem(query: String) {
+        view.showLoading()
+
+        if (this.query != query) {
+            mercadoLibreItems.clear()
+            view.clearItems()
+        }
+
         this.query = query
+
         mercadoLibreItemsPagingManager.loadNextPage(this.query)
     }
 
@@ -47,6 +55,8 @@ class HomePresenterImpl @Inject constructor(
             .subscribeBy(onNext = {
                 mercadoLibreItems.addAll(mercadoLibreItemUiMapper.fromDomainList(it.data))
                 removeLoadingAdapterItem()
+
+                view.hideLoading()
                 view.loadItems(mercadoLibreItems)
 
                 canLoadNextPage = true

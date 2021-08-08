@@ -8,6 +8,7 @@
         <item name="android:textColorPrimary">@color/dark_grey</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 

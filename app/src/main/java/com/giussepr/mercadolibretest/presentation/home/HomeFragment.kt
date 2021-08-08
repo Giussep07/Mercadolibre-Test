@@ -2,45 +2,83 @@ package com.giussepr.mercadolibretest.presentation.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.LinearLayout
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.giussepr.mercadolibretest.R
 import com.giussepr.mercadolibretest.databinding.FragmentHomeBinding
 import com.giussepr.mercadolibretest.presentation.base.BaseBindingFragment
 import com.giussepr.mercadolibretest.presentation.home.adapter.MercadoLibreItemAdapter
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
 import com.giussepr.mercadolibretest.presentation.util.GlideImageLoader
+import com.giussepr.mercadolibretest.presentation.util.KeyboardManager
 import com.giussepr.mercadolibretest.presentation.util.ResourcesManager
 import javax.inject.Inject
 
 
-class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView {
+class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
+    SearchView.OnQueryTextListener {
 
     @Inject lateinit var presenter: HomePresenter
     @Inject lateinit var resourcesManager: ResourcesManager
     @Inject lateinit var glideImageLoader: GlideImageLoader
+    @Inject lateinit var keyboardManager: KeyboardManager
 
     private lateinit var adapter: MercadoLibreItemAdapter
+    private lateinit var searchView: SearchView
     private var lastVisibleItemPosition = -1
 
     override fun bindView(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding =
         FragmentHomeBinding.inflate(inflater, container, false)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         presenter.onViewCreated()
+    }
 
-        // TODO: Test code change it later
-        presenter.searchItem("pinzas")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_home, menu)
+        searchView = menu.findItem(R.id.item_menu_search).actionView as SearchView
+        searchView.setIconifiedByDefault(true)
+        searchView.setOnQueryTextListener(this)
     }
 
     override fun loadItems(mercadoLibreItems: MutableList<MercadoLibreItemUiItem>) {
         adapter.submitList(mercadoLibreItems.toMutableList())
+    }
+
+    override fun showLoading() {
+        binding.pbLoading.isVisible = true
+    }
+
+    override fun hideLoading() {
+        binding.pbLoading.isGone = true
+    }
+
+    override fun clearItems() {
+        adapter.submitList(null)
+    }
+
+    override fun onQueryTextSubmit(query: String): Boolean {
+        keyboardManager.hideKeyboard(requireView())
+        presenter.searchItem(query)
+        return true
+    }
+
+    override fun onQueryTextChange(query: String): Boolean {
+        // nothing to do
+        return false
     }
 
     private fun setupRecyclerView() {

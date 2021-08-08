@@ -6,4 +6,5 @@
     <string name="best_seller">Más vendido</string>
     <string name="discount_percentage">%1$s\%% OFF</string>
     <string name="free_shipping">Envío gratis</string>
+    <string name="search">Buscar</string>
 </resources>
