@@ -5,8 +5,14 @@ import com.giussepr.mercadolibretest.domain.model.InstallmentsDomainModel
 import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel
 import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel.Companion.BEST_SELLER_CANDIDATE
 import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel.Companion.PROMOTION_TYPE
+import com.giussepr.mercadolibretest.domain.model.PagingDataDomainModel
 
 class MercadoLibreItemRemoteMapper {
+
+    fun fromPagingRemote(searchResponse: SearchResponse): PagingDataDomainModel {
+        val data = fromRemote(searchResponse)
+        return PagingDataDomainModel(data, searchResponse.paging.offset, searchResponse.paging.limit)
+    }
 
     fun fromRemote(searchResponse: SearchResponse): List<MercadoLibreItemDomainModel> {
         return searchResponse.results.map {
@@ -26,4 +32,5 @@ class MercadoLibreItemRemoteMapper {
             )
         }
     }
+
 }

@@ -1,7 +1,7 @@
 package com.giussepr.mercadolibretest.data.network.model.response
 
 data class Metadata(
-    val campaign_discount_percentage: Int,
+    val campaign_discount_percentage: Double,
     val campaign_end_date: String,
     val campaign_id: String,
     val discount_meli_amount: Int,

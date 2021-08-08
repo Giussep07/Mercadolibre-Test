@@ -1,11 +1,13 @@
 package com.giussepr.mercadolibretest.di
 
 import androidx.fragment.app.Fragment
+import com.giussepr.mercadolibretest.di.scope.FragmentScope
 import com.giussepr.mercadolibretest.domain.repository.MercadoLibreRepository
 import com.giussepr.mercadolibretest.presentation.home.HomeFragment
 import com.giussepr.mercadolibretest.presentation.home.HomePresenter
 import com.giussepr.mercadolibretest.presentation.home.HomePresenterImpl
 import com.giussepr.mercadolibretest.presentation.home.HomeView
+import com.giussepr.mercadolibretest.presentation.home.helper.MercadoLibreItemsPagingManager
 import com.giussepr.mercadolibretest.presentation.mapper.MercadoLibreItemUiMapper
 import dagger.Binds
 import dagger.Module
@@ -14,17 +16,25 @@ import dagger.Provides
 @Module(includes = [HomeBindModule::class])
 class HomeModule {
 
+    @FragmentScope
     @Provides
     fun provideHomePresenter(
         view: HomeView,
-        repository: MercadoLibreRepository,
+        mercadoLibreItemsPagingManager: MercadoLibreItemsPagingManager,
         mercadoLibreItemUiMapper: MercadoLibreItemUiMapper
     ): HomePresenter {
-        return HomePresenterImpl(view, repository, mercadoLibreItemUiMapper)
+        return HomePresenterImpl(view, mercadoLibreItemsPagingManager, mercadoLibreItemUiMapper)
     }
 
+    @FragmentScope
     @Provides
     fun provideMercadoLibreItemUiMapper(): MercadoLibreItemUiMapper = MercadoLibreItemUiMapper()
+
+    @FragmentScope
+    @Provides
+    fun provideMercadoLibreItemsPagingManager(repository: MercadoLibreRepository): MercadoLibreItemsPagingManager {
+        return MercadoLibreItemsPagingManager(repository)
+    }
 
 }
 

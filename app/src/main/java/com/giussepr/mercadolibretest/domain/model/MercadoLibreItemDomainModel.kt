@@ -8,7 +8,7 @@ data class MercadoLibreItemDomainModel(
     val currency: String,
     val installments: InstallmentsDomainModel,
     val isFreeShipping: Boolean,
-    val discountPercentage: Int?,
+    val discountPercentage: Double?,
     val isBestSeller: Boolean
 ) {
     companion object {

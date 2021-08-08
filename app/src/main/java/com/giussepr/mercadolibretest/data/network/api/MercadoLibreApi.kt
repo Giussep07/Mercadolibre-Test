@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface MercadoLibreApi {
 
     @GET("search")
-    fun search(@Query("q") query: String): Single<SearchResponse>
+    fun search(@Query("q") query: String, @Query("offset") offset: Int, @Query("limit") limit: Int): Single<SearchResponse>
 
 }

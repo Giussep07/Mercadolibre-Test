@@ -1,8 +1,8 @@
 package com.giussepr.mercadolibretest.data.network.remoteSource
 
-import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel
+import com.giussepr.mercadolibretest.domain.model.PagingDataDomainModel
 import io.reactivex.Single
 
 interface MercadoLibreRemoteSource {
-    fun searchItem(query: String): Single<List<MercadoLibreItemDomainModel>>
+    fun searchItem(query: String, offset: Int, limit: Int): Single<PagingDataDomainModel>
 }

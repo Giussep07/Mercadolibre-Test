@@ -2,6 +2,7 @@
 <resources>
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_16">16dp</dimen>
+    <dimen name="space_24">24dp</dimen>
     <dimen name="mercado_libre_item_height">140dp</dimen>
     <dimen name="mercado_libre_item_image_size">108dp</dimen>
 </resources>
