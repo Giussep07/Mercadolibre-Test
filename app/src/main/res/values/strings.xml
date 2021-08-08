@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Mercado Libre Test</string>
+
+    <string name="mercado_libre_item_price">$ %1$s</string>
+    <string name="mercado_libre_item_installments">en %1$sx $ %2$s</string>
+    <string name="best_seller">Más vendido</string>
+    <string name="discount_percentage">%1$s\%% OFF</string>
+    <string name="free_shipping">Envío gratis</string>
 </resources>

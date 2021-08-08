@@ -14,7 +14,8 @@ import javax.inject.Singleton
     ApplicationModule::class,
     FragmentBindingModule::class,
     NetModule::class,
-    RepositoryModule::class
+    RepositoryModule::class,
+    MercadoLibreRemoteModule::class
 ])
 interface ApplicationComponent: AndroidInjector<MercadoLibreTestApp> {
 

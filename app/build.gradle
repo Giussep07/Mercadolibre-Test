@@ -63,6 +63,9 @@ dependencies {
     implementation(Lib.rxAndroid)
     implementation(Lib.rxKotlin)
 
+    implementation(Lib.glide)
+    annotationProcessor(Lib.glideCompiler)
+
     testImplementation(TestLib.junit)
     androidTestImplementation(TestLib.androidxTestJunit)
     androidTestImplementation(TestLib.androidxTestEspresso)

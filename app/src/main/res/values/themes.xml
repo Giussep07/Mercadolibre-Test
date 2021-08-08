@@ -9,4 +9,59 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
+
+
+    <!-- region Body TextAppearance -->
+    <style name="TextAppearance.MercadoLibre.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="TextAppearance.MercadoLibre.Body2" parent="TextAppearance.MercadoLibre.Body1">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+    </style>
+    <!-- endregion Body TextAppearance -->
+
+    <!-- region Headline TextAppearance -->
+    <style name="TextAppearance.MercadoLibre.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">22sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+    <!-- endregion Headline TextAppearance -->
+
+    <!-- region Caption TextAppearance -->
+    <style name="TextAppearance.MercadoLibre.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="TextAppearance.MercadoLibre.Free.Shipping" parent="TextAppearance.MercadoLibre.Caption">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="TextAppearance.MercadoLibre.Discount" parent="TextAppearance.MercadoLibre.Caption">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:background">@drawable/bg_discount_percentage</item>
+    </style>
+    <!-- endregion Caption TextAppearance -->
+
+    <style name="TextAppearance.MercadoLibre.Best.Seller" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_best_seller</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
 </resources>

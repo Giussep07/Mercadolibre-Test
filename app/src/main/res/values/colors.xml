@@ -3,4 +3,9 @@
     <color name="yellow">#fff159</color>
     <color name="yellow_700">#fcc32c</color>
     <color name="dark_grey">#333333</color>
+    <color name="green">#00a650</color>
+    <color name="light_blue">#D9E7FA</color>
+    <color name="dark_blue">#3483FA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#FF7733</color>
 </resources>
