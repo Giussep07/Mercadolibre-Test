@@ -1,5 +1,6 @@
 package com.giussepr.mercadolibretest.presentation.home
 
+import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
 
 interface HomeView {
@@ -7,4 +8,5 @@ interface HomeView {
     fun showLoading()
     fun hideLoading()
     fun clearItems()
+    fun navigateToItemDetail(item: MercadoLibreItemUi)
 }

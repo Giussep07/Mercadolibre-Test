@@ -2,6 +2,7 @@ package com.giussepr.mercadolibretest.presentation.home
 
 import com.giussepr.mercadolibretest.presentation.home.helper.MercadoLibreItemsPagingManager
 import com.giussepr.mercadolibretest.presentation.mapper.MercadoLibreItemUiMapper
+import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreLoadingItemUi
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,6 +26,11 @@ class HomePresenterImpl @Inject constructor(
         subscribeToPagingUpdates()
     }
 
+    override fun onDestroyView() {
+        println("Destroy")
+        pagingUpdatesDisposable?.dispose()
+    }
+
     override fun searchItem(query: String) {
         view.showLoading()
 
@@ -43,6 +49,10 @@ class HomePresenterImpl @Inject constructor(
             showLoadingAdapterItem()
             mercadoLibreItemsPagingManager.loadNextPage(this.query)
         }
+    }
+
+    override fun onItemClicked(item: MercadoLibreItemUi) {
+        view.navigateToItemDetail(item)
     }
 
     private fun subscribeToPagingUpdates() {

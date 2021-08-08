@@ -1,5 +1,9 @@
 package com.giussepr.mercadolibretest.presentation.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class MercadoLibreItemUi(
     val id: String,
     val title: String,
@@ -9,4 +13,4 @@ data class MercadoLibreItemUi(
     val isFreeShipping: Boolean,
     val discountPercentage: Double?,
     val isBestSeller: Boolean
-): MercadoLibreItemUiItem
+): MercadoLibreItemUiItem, Parcelable

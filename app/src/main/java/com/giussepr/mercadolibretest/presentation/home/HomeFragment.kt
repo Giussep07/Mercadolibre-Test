@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.giussepr.mercadolibretest.R
 import com.giussepr.mercadolibretest.databinding.FragmentHomeBinding
 import com.giussepr.mercadolibretest.presentation.base.BaseBindingFragment
 import com.giussepr.mercadolibretest.presentation.home.adapter.MercadoLibreItemAdapter
+import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
 import com.giussepr.mercadolibretest.presentation.util.GlideImageLoader
 import com.giussepr.mercadolibretest.presentation.util.KeyboardManager
@@ -22,7 +24,7 @@ import javax.inject.Inject
 
 
 class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
-    SearchView.OnQueryTextListener {
+    SearchView.OnQueryTextListener, MercadoLibreItemAdapter.MercadoLibreItemListener {
 
     @Inject lateinit var presenter: HomePresenter
     @Inject lateinit var resourcesManager: ResourcesManager
@@ -45,6 +47,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         presenter.onViewCreated()
+    }
+
+    override fun onDestroyView() {
+        presenter.onDestroyView()
+        super.onDestroyView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -70,6 +77,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
         adapter.submitList(null)
     }
 
+    override fun navigateToItemDetail(item: MercadoLibreItemUi) {
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToItemDetailFragment(item))
+    }
+
     override fun onQueryTextSubmit(query: String): Boolean {
         keyboardManager.hideKeyboard(requireView())
         presenter.searchItem(query)
@@ -81,11 +92,15 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
         return false
     }
 
+    override fun onItemClicked(item: MercadoLibreItemUi) {
+        presenter.onItemClicked(item)
+    }
+
     private fun setupRecyclerView() {
         val layoutManager = binding.rvMercadoLibreItems.layoutManager as LinearLayoutManager
 
         binding.rvMercadoLibreItems.adapter =
-            MercadoLibreItemAdapter(requireContext(), resourcesManager, glideImageLoader).also {
+            MercadoLibreItemAdapter(requireContext(), resourcesManager, glideImageLoader, this).also {
                 adapter = it
             }
 

@@ -20,7 +20,8 @@ import java.text.NumberFormat
 class MercadoLibreItemAdapter(
     private val context: Context,
     private val resourcesManager: ResourcesManager,
-    private val glideImageLoader: GlideImageLoader
+    private val glideImageLoader: GlideImageLoader,
+    private val listener: MercadoLibreItemListener
 ) : ListAdapter<MercadoLibreItemUiItem, RecyclerView.ViewHolder>(
     MercadoLibreItemUiItem.DiffCallback
 ) {
@@ -85,11 +86,17 @@ class MercadoLibreItemAdapter(
 
             binding.tvFreeShipping.isVisible = item.isFreeShipping
             binding.tvBestSeller.isVisible = item.isBestSeller
+
+            binding.llMercadoLibreItem.setOnClickListener { listener.onItemClicked(item) }
         }
     }
 
     inner class MercadoLibreLoadingItemVH(private val binding: ItemLoadingBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    interface MercadoLibreItemListener {
+        fun onItemClicked(item: MercadoLibreItemUi)
+    }
 
     companion object {
         const val LOADING_VIEW_TYPE = 1
