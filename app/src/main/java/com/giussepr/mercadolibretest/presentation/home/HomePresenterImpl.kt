@@ -1,5 +1,6 @@
 package com.giussepr.mercadolibretest.presentation.home
 
+import android.os.Bundle
 import com.giussepr.mercadolibretest.presentation.home.helper.MercadoLibreItemsPagingManager
 import com.giussepr.mercadolibretest.presentation.mapper.MercadoLibreItemUiMapper
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
@@ -22,13 +23,26 @@ class HomePresenterImpl @Inject constructor(
     private var mercadoLibreItems: MutableList<MercadoLibreItemUiItem> = mutableListOf()
     private var canLoadNextPage: Boolean = false
 
-    override fun onViewCreated() {
+    override fun onViewCreated(
+        query: String,
+        mercadoLibreItems: List<MercadoLibreItemUi>?,
+        canLoadNextPage: Boolean
+    ) {
+        this.query = query
+        this.canLoadNextPage = canLoadNextPage
+
         view.showEmptyState()
+
+        mercadoLibreItems?.let {
+            this.mercadoLibreItems = it.toMutableList()
+            view.loadItems(this.mercadoLibreItems)
+            view.hideEmptyState()
+        }
+
         subscribeToPagingUpdates()
     }
 
     override fun onDestroyView() {
-        println("Destroy")
         pagingUpdatesDisposable?.dispose()
     }
 
@@ -56,6 +70,11 @@ class HomePresenterImpl @Inject constructor(
 
     override fun onItemClicked(item: MercadoLibreItemUi) {
         view.navigateToItemDetail(item)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        val mercadoLibreItemUi = mercadoLibreItems.filterIsInstance<MercadoLibreItemUi>()
+        view.saveState(outState, query, mercadoLibreItemUi, canLoadNextPage)
     }
 
     private fun subscribeToPagingUpdates() {

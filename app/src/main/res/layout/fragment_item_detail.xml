@@ -1,122 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.detail.ItemDetailFragment">
 
-    <TextView
-        android:id="@+id/tvConditionSold"
-        style="@style/TextAppearance.MercadoLibre.Caption"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:paddingHorizontal="@dimen/space_16"
-        android:paddingTop="@dimen/space_16"
-        android:singleLine="true"
-        android:textColor="@color/black_40"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Nuevo | 730 vendidos" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/TextAppearance.MercadoLibre.Body1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/space_16"
-        android:paddingTop="@dimen/space_8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvConditionSold"
-        tools:text="@tools:sample/lorem[15]" />
+        <TextView
+            android:id="@+id/tvConditionSold"
+            style="@style/TextAppearance.MercadoLibre.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingTop="@dimen/space_16"
+            android:singleLine="true"
+            android:textColor="@color/black_40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nuevo | 730 vendidos" />
 
-    <ImageView
-        android:id="@+id/ivItemImage"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/item_detail_image_size"
-        android:layout_marginTop="@dimen/space_8"
-        android:padding="@dimen/space_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        tools:src="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextAppearance.MercadoLibre.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingTop="@dimen/space_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvConditionSold"
+            tools:text="@tools:sample/lorem[15]" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpImages"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/item_detail_image_size"
-        android:layout_marginTop="@dimen/space_8"
-        android:padding="@dimen/space_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+        <ImageView
+            android:id="@+id/ivItemImage"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_detail_image_size"
+            android:layout_marginTop="@dimen/space_8"
+            android:padding="@dimen/space_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvViewPagerPicturesIndicator"
-        style="@style/TextAppearance.MercadoLibre.Caption.SemiBold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_16"
-        android:background="@drawable/bg_pictures_viewpager_indicator"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/vpImages"
-        app:layout_constraintTop_toTopOf="@id/vpImages"
-        tools:text="1 / 99"
-        tools:visibility="visible" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpImages"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_detail_image_size"
+            android:layout_marginTop="@dimen/space_8"
+            android:padding="@dimen/space_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivItemImage"
-        style="@style/TextAppearance.MercadoLibre.HeadLine4"
-        android:layout_marginTop="@dimen/space_8"
-        android:paddingHorizontal="@dimen/space_16"
-        tools:text="$ 39.000" />
+        <TextView
+            android:id="@+id/tvViewPagerPicturesIndicator"
+            style="@style/TextAppearance.MercadoLibre.Caption.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:background="@drawable/bg_pictures_viewpager_indicator"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/vpImages"
+            app:layout_constraintTop_toTopOf="@id/vpImages"
+            tools:text="1 / 99"
+            tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/tvInstallments"
-        style="@style/TextAppearance.MercadoLibre.Body1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_8"
-        android:drawablePadding="@dimen/space_8"
-        android:paddingHorizontal="@dimen/space_16"
-        app:drawableStartCompat="@drawable/ic_card_dark_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPrice"
-        tools:text="Hasta 36 cuotas" />
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivItemImage"
+            style="@style/TextAppearance.MercadoLibre.HeadLine4"
+            android:layout_marginTop="@dimen/space_8"
+            android:paddingHorizontal="@dimen/space_16"
+            tools:text="$ 39.000" />
 
-    <TextView
-        android:id="@+id/tvStock"
-        style="@style/TextAppearance.MercadoLibre.Body1.SemiBold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_8"
-        android:drawablePadding="@dimen/space_8"
-        android:paddingHorizontal="@dimen/space_16"
-        android:text="@string/stock"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvInstallments" />
+        <TextView
+            android:id="@+id/tvInstallments"
+            style="@style/TextAppearance.MercadoLibre.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:drawablePadding="@dimen/space_8"
+            android:paddingHorizontal="@dimen/space_16"
+            app:drawableStartCompat="@drawable/ic_card_dark_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            tools:text="Hasta 36 cuotas" />
 
-    <TextView
-        android:id="@+id/tvStockAvailable"
-        style="@style/TextAppearance.MercadoLibre.Body1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_16"
-        android:layout_marginTop="@dimen/space_8"
-        android:background="@drawable/bg_stock_available"
-        android:padding="@dimen/space_16"
-        app:drawableEndCompat="@drawable/ic_arrow_right_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvStock"
-        tools:text="6 disponibles" />
+        <TextView
+            android:id="@+id/tvStock"
+            style="@style/TextAppearance.MercadoLibre.Body1.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:drawablePadding="@dimen/space_8"
+            android:paddingHorizontal="@dimen/space_16"
+            android:text="@string/stock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvInstallments" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvStockAvailable"
+            style="@style/TextAppearance.MercadoLibre.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_16"
+            android:layout_marginTop="@dimen/space_8"
+            android:background="@drawable/bg_stock_available"
+            android:padding="@dimen/space_16"
+            app:drawableEndCompat="@drawable/ic_arrow_right_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvStock"
+            tools:text="6 disponibles" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

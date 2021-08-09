@@ -3,7 +3,6 @@ package com.giussepr.mercadolibretest.presentation.home
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
@@ -22,7 +21,6 @@ import com.giussepr.mercadolibretest.presentation.util.GlideImageLoader
 import com.giussepr.mercadolibretest.presentation.util.KeyboardManager
 import com.giussepr.mercadolibretest.presentation.util.ResourcesManager
 import javax.inject.Inject
-
 
 class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
     SearchView.OnQueryTextListener, MercadoLibreItemAdapter.MercadoLibreItemListener {
@@ -47,7 +45,12 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        presenter.onViewCreated()
+
+        val query: String = savedInstanceState?.getString(SAVED_QUERY) ?: ""
+        val mercadoLibreItems: List<MercadoLibreItemUi>? = savedInstanceState?.getParcelableArrayList(SAVED_MERCADO_LIBRE_ITEMS)
+        val canLoadNextPage: Boolean = savedInstanceState?.getBoolean(SAVED_CAN_LOAD_NEXT_PAGE) ?: false
+
+        presenter.onViewCreated(query, mercadoLibreItems, canLoadNextPage)
     }
 
     override fun onDestroyView() {
@@ -60,6 +63,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
         searchView = menu.findItem(R.id.item_menu_search).actionView as SearchView
         searchView.queryHint = resourcesManager.getString(R.string.search)
         searchView.setOnQueryTextListener(this)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        presenter.onSaveInstanceState(outState)
     }
 
     override fun loadItems(mercadoLibreItems: MutableList<MercadoLibreItemUiItem>) {
@@ -96,6 +104,17 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
 
     override fun hideNoResults() {
         binding.noResultsGroup.isGone = true
+    }
+
+    override fun saveState(
+        outState: Bundle,
+        query: String,
+        mercadoLibreItems: List<MercadoLibreItemUi>,
+        canLoadNextPage: Boolean
+    ) {
+        outState.putString(SAVED_QUERY, query)
+        outState.putParcelableArrayList(SAVED_MERCADO_LIBRE_ITEMS, ArrayList(mercadoLibreItems))
+        outState.putBoolean(SAVED_CAN_LOAD_NEXT_PAGE, canLoadNextPage)
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
@@ -144,5 +163,13 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
                 }
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "com.giussepr.mercadolibretest.presentation.home.HomeFragment"
+
+        const val SAVED_QUERY = "$TAG.query"
+        const val SAVED_MERCADO_LIBRE_ITEMS = "$TAG.mercadoLibreItems"
+        const val SAVED_CAN_LOAD_NEXT_PAGE = "$TAG.canLoadNextPage"
     }
 }
