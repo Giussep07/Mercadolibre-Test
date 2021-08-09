@@ -6,7 +6,7 @@ data class MercadoLibreItemDomainModel(
     val thumbnail: String,
     val price: Long,
     val currency: String,
-    val installments: InstallmentsDomainModel,
+    val installments: InstallmentsDomainModel?,
     val isFreeShipping: Boolean,
     val discountPercentage: Double?,
     val isBestSeller: Boolean,

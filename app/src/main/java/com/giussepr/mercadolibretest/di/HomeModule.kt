@@ -9,6 +9,8 @@ import com.giussepr.mercadolibretest.presentation.home.HomePresenterImpl
 import com.giussepr.mercadolibretest.presentation.home.HomeView
 import com.giussepr.mercadolibretest.presentation.home.helper.MercadoLibreItemsPagingManager
 import com.giussepr.mercadolibretest.presentation.mapper.MercadoLibreItemUiMapper
+import com.giussepr.mercadolibretest.presentation.util.ConnectivityStatusManager
+import com.giussepr.mercadolibretest.presentation.util.ResourcesManager
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -20,9 +22,12 @@ class HomeModule {
     fun provideHomePresenter(
         view: HomeView,
         mercadoLibreItemsPagingManager: MercadoLibreItemsPagingManager,
-        mercadoLibreItemUiMapper: MercadoLibreItemUiMapper
+        mercadoLibreItemUiMapper: MercadoLibreItemUiMapper,
+        connectivityStatusManager: ConnectivityStatusManager,
+        resourcesManager: ResourcesManager
     ): HomePresenter {
-        return HomePresenterImpl(view, mercadoLibreItemsPagingManager, mercadoLibreItemUiMapper)
+        return HomePresenterImpl(view, mercadoLibreItemsPagingManager, mercadoLibreItemUiMapper,
+            connectivityStatusManager, resourcesManager)
     }
 
     @Provides

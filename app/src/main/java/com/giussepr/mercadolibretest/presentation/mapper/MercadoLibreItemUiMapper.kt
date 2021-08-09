@@ -11,12 +11,18 @@ class MercadoLibreItemUiMapper {
     }
 
     fun fromDomain(mercadoLibreItem: MercadoLibreItemDomainModel): MercadoLibreItemUi {
+        val installment = if (mercadoLibreItem.installments != null) {
+            InstallmentsUiModel(mercadoLibreItem.installments.quantity, mercadoLibreItem.installments.amount)
+        } else {
+            null
+        }
+
         return MercadoLibreItemUi(
             mercadoLibreItem.id,
             mercadoLibreItem.title,
             mercadoLibreItem.thumbnail,
             mercadoLibreItem.price,
-            InstallmentsUiModel(mercadoLibreItem.installments.quantity, mercadoLibreItem.installments.amount),
+            installment,
             mercadoLibreItem.isFreeShipping,
             if (mercadoLibreItem.discountPercentage != null && mercadoLibreItem.discountPercentage > 0) mercadoLibreItem.discountPercentage else null,
             mercadoLibreItem.isBestSeller,

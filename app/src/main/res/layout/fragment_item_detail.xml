@@ -91,10 +91,12 @@
             android:layout_marginTop="@dimen/space_8"
             android:drawablePadding="@dimen/space_8"
             android:paddingHorizontal="@dimen/space_16"
+            android:visibility="gone"
             app:drawableStartCompat="@drawable/ic_card_dark_grey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPrice"
-            tools:text="Hasta 36 cuotas" />
+            tools:text="Hasta 36 cuotas"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/tvStock"

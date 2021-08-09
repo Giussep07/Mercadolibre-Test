@@ -17,6 +17,7 @@ import com.giussepr.mercadolibretest.presentation.base.BaseBindingFragment
 import com.giussepr.mercadolibretest.presentation.home.adapter.MercadoLibreItemAdapter
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
+import com.giussepr.mercadolibretest.presentation.util.AlertDialogUtil
 import com.giussepr.mercadolibretest.presentation.util.GlideImageLoader
 import com.giussepr.mercadolibretest.presentation.util.KeyboardManager
 import com.giussepr.mercadolibretest.presentation.util.ResourcesManager
@@ -115,6 +116,16 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
         outState.putString(SAVED_QUERY, query)
         outState.putParcelableArrayList(SAVED_MERCADO_LIBRE_ITEMS, ArrayList(mercadoLibreItems))
         outState.putBoolean(SAVED_CAN_LOAD_NEXT_PAGE, canLoadNextPage)
+    }
+
+    override fun showErrorDialog(errorMessage: String) {
+        AlertDialogUtil.generalDialog(
+            requireContext(),
+            message = errorMessage,
+            action = {
+                presenter.onRetryClicked()
+            }
+        )
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {

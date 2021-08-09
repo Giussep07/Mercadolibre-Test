@@ -1,11 +1,14 @@
 package com.giussepr.mercadolibretest.presentation.home
 
 import android.os.Bundle
+import com.giussepr.mercadolibretest.R
 import com.giussepr.mercadolibretest.presentation.home.helper.MercadoLibreItemsPagingManager
 import com.giussepr.mercadolibretest.presentation.mapper.MercadoLibreItemUiMapper
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUi
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreItemUiItem
 import com.giussepr.mercadolibretest.presentation.model.MercadoLibreLoadingItemUi
+import com.giussepr.mercadolibretest.presentation.util.ConnectivityStatusManager
+import com.giussepr.mercadolibretest.presentation.util.ResourcesManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -15,7 +18,9 @@ import javax.inject.Inject
 class HomePresenterImpl @Inject constructor(
     private val view: HomeView,
     private val mercadoLibreItemsPagingManager: MercadoLibreItemsPagingManager,
-    private val mercadoLibreItemUiMapper: MercadoLibreItemUiMapper
+    private val mercadoLibreItemUiMapper: MercadoLibreItemUiMapper,
+    private val connectivityStatusManager: ConnectivityStatusManager,
+    private val resourcesManager: ResourcesManager
 ) : HomePresenter {
 
     private var pagingUpdatesDisposable: Disposable? = null
@@ -77,6 +82,11 @@ class HomePresenterImpl @Inject constructor(
         view.saveState(outState, query, mercadoLibreItemUi, canLoadNextPage)
     }
 
+    override fun onRetryClicked() {
+        subscribeToPagingUpdates()
+        searchItem(this.query)
+    }
+
     private fun subscribeToPagingUpdates() {
         canLoadNextPage = true
 
@@ -99,7 +109,16 @@ class HomePresenterImpl @Inject constructor(
             }, onComplete = {
                 canLoadNextPage = false
             }, onError = {
-                canLoadNextPage = false
+                view.hideLoading()
+                view.showEmptyState()
+                canLoadNextPage = true
+                val errorMessage = if (!connectivityStatusManager.hasNetwork()) {
+                    resourcesManager.getString(R.string.no_internet_connection)
+                } else {
+                    resourcesManager.getString(R.string.generic_error)
+                }
+
+                view.showErrorDialog(errorMessage)
             })
     }
 

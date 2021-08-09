@@ -14,4 +14,5 @@ interface HomePresenter {
     fun loadNextPage()
     fun onItemClicked(item: MercadoLibreItemUi)
     fun onSaveInstanceState(outState: Bundle)
+    fun onRetryClicked()
 }

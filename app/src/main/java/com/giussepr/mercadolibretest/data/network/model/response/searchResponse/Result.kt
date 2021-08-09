@@ -3,9 +3,9 @@ package com.giussepr.mercadolibretest.data.network.model.response.searchResponse
 data class Result(
     val condition: String,
     val id: String,
-    val installments: Installments,
+    val installments: Installments?,
     val price: Long,
-    val prices: Prices,
+    val prices: Prices?,
     val shipping: Shipping,
     val sold_quantity: Int,
     val tags: List<String>,

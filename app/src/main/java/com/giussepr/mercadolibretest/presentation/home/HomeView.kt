@@ -20,4 +20,5 @@ interface HomeView {
         mercadoLibreItems: List<MercadoLibreItemUi>,
         canLoadNextPage: Boolean
     )
+    fun showErrorDialog(errorMessage: String)
 }

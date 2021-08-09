@@ -47,6 +47,8 @@ class MercadoLibreItemsPagingManager @Inject constructor(private val repository:
                 isInProgress = false
             }, onError = {
                 isInProgress = false
+                pagingSubject.onError(it)
+                pagingSubject = PublishSubject.create()
             })
     }
 

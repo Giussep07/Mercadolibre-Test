@@ -9,7 +9,7 @@ data class MercadoLibreItemUi(
     val title: String,
     val thumbnail: String,
     val price: Long,
-    val installments: InstallmentsUiModel,
+    val installments: InstallmentsUiModel?,
     val isFreeShipping: Boolean,
     val discountPercentage: Double?,
     val isBestSeller: Boolean,

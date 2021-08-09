@@ -51,7 +51,11 @@ class ItemDetailFragment : BaseBindingFragment<FragmentItemDetailBinding>(), Ite
         numberFormat.maximumFractionDigits = 0
 
         binding.tvPrice.text = resourcesManager.getString(R.string.mercado_libre_item_price, numberFormat.format(mercadoLibreItem.price))
-        binding.tvInstallments.text = resourcesManager.getString(R.string.item_detail_installments, mercadoLibreItem.installments.quantity)
+
+        binding.tvInstallments.isVisible = mercadoLibreItem.installments != null
+        mercadoLibreItem.installments?.let {
+            binding.tvInstallments.text = resourcesManager.getString(R.string.item_detail_installments, it.quantity)
+        }
         binding.tvStockAvailable.text = resourcesManager.getQuantityString(R.plurals.stock_available, mercadoLibreItem.availableQuantity, mercadoLibreItem.availableQuantity)
     }
 

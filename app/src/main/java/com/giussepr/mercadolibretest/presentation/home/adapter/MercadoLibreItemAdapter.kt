@@ -70,11 +70,14 @@ class MercadoLibreItemAdapter(
             val numberFormat = NumberFormat.getInstance()
             numberFormat.maximumFractionDigits = 0
 
-            binding.tvInstallments.text = resourcesManager.getString(
-                R.string.mercado_libre_item_installments,
-                item.installments.quantity.toString(),
-                numberFormat.format(item.installments.amount)
-            )
+            binding.tvInstallments.isVisible = item.installments != null
+            item.installments?.let {
+                binding.tvInstallments.text = resourcesManager.getString(
+                    R.string.mercado_libre_item_installments,
+                    it.quantity.toString(),
+                    numberFormat.format(it.amount)
+                )
+            }
 
             binding.tvDiscountPercentage.isVisible = item.discountPercentage != null
             item.discountPercentage?.let {
