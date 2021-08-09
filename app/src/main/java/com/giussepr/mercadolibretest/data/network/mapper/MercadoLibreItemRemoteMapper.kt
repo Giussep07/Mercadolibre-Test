@@ -1,6 +1,6 @@
 package com.giussepr.mercadolibretest.data.network.mapper
 
-import com.giussepr.mercadolibretest.data.network.model.response.SearchResponse
+import com.giussepr.mercadolibretest.data.network.model.response.searchResponse.SearchResponse
 import com.giussepr.mercadolibretest.domain.model.InstallmentsDomainModel
 import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel
 import com.giussepr.mercadolibretest.domain.model.MercadoLibreItemDomainModel.Companion.BEST_SELLER_CANDIDATE
@@ -11,7 +11,10 @@ class MercadoLibreItemRemoteMapper {
 
     fun fromPagingRemote(searchResponse: SearchResponse): PagingDataDomainModel {
         val data = fromRemote(searchResponse)
-        return PagingDataDomainModel(data, searchResponse.paging.offset, searchResponse.paging.limit)
+
+        val isLastPage = searchResponse.results.size + searchResponse.paging.offset >= searchResponse.paging.total
+
+        return PagingDataDomainModel(data, searchResponse.paging.offset, searchResponse.paging.limit, isLastPage)
     }
 
     fun fromRemote(searchResponse: SearchResponse): List<MercadoLibreItemDomainModel> {
@@ -28,7 +31,10 @@ class MercadoLibreItemRemoteMapper {
                 InstallmentsDomainModel(it.installments.quantity, it.installments.amount),
                 it.shipping.free_shipping,
                 discountPercentage,
-                it.tags.contains(BEST_SELLER_CANDIDATE)
+                it.tags.contains(BEST_SELLER_CANDIDATE),
+                it.condition,
+                it.sold_quantity,
+                it.available_quantity
             )
         }
     }

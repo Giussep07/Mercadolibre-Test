@@ -9,7 +9,10 @@ data class MercadoLibreItemDomainModel(
     val installments: InstallmentsDomainModel,
     val isFreeShipping: Boolean,
     val discountPercentage: Double?,
-    val isBestSeller: Boolean
+    val isBestSeller: Boolean,
+    val condition: String,
+    val soldQuantity: Int,
+    val availableQuantity: Int
 ) {
     companion object {
         const val PROMOTION_TYPE = "promotion"

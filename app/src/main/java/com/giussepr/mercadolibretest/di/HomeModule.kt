@@ -16,7 +16,6 @@ import dagger.Provides
 @Module(includes = [HomeBindModule::class])
 class HomeModule {
 
-    @FragmentScope
     @Provides
     fun provideHomePresenter(
         view: HomeView,
@@ -26,11 +25,9 @@ class HomeModule {
         return HomePresenterImpl(view, mercadoLibreItemsPagingManager, mercadoLibreItemUiMapper)
     }
 
-    @FragmentScope
     @Provides
     fun provideMercadoLibreItemUiMapper(): MercadoLibreItemUiMapper = MercadoLibreItemUiMapper()
 
-    @FragmentScope
     @Provides
     fun provideMercadoLibreItemsPagingManager(repository: MercadoLibreRepository): MercadoLibreItemsPagingManager {
         return MercadoLibreItemsPagingManager(repository)

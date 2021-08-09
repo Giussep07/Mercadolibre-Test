@@ -23,6 +23,7 @@ class HomePresenterImpl @Inject constructor(
     private var canLoadNextPage: Boolean = false
 
     override fun onViewCreated() {
+        view.showEmptyState()
         subscribeToPagingUpdates()
     }
 
@@ -32,6 +33,8 @@ class HomePresenterImpl @Inject constructor(
     }
 
     override fun searchItem(query: String) {
+        view.hideEmptyState()
+        view.hideNoResults()
         view.showLoading()
 
         if (this.query != query) {
@@ -66,10 +69,14 @@ class HomePresenterImpl @Inject constructor(
                 mercadoLibreItems.addAll(mercadoLibreItemUiMapper.fromDomainList(it.data))
                 removeLoadingAdapterItem()
 
-                view.hideLoading()
-                view.loadItems(mercadoLibreItems)
+                if (it.data.isNotEmpty()) {
+                    view.loadItems(mercadoLibreItems)
+                } else if (it.offset == 0 && it.data.isEmpty()) {
+                    view.showNoResults()
+                }
 
-                canLoadNextPage = true
+                view.hideLoading()
+                canLoadNextPage = !it.isLastPage
             }, onComplete = {
                 canLoadNextPage = false
             }, onError = {

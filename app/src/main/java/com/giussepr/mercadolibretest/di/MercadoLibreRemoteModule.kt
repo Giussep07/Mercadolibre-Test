@@ -1,6 +1,7 @@
 package com.giussepr.mercadolibretest.di
 
 import com.giussepr.mercadolibretest.data.network.api.MercadoLibreApi
+import com.giussepr.mercadolibretest.data.network.mapper.MercadoLibreItemDetailInfoRemoteMapper
 import com.giussepr.mercadolibretest.data.network.mapper.MercadoLibreItemRemoteMapper
 import com.giussepr.mercadolibretest.data.network.remoteSource.MercadoLibreRemoteSource
 import com.giussepr.mercadolibretest.data.network.remoteSource.MercadoLibreRemoteSourceImpl
@@ -15,14 +16,22 @@ class MercadoLibreRemoteModule {
     @Provides
     fun provideMercadoLibreRemoteSource(
         mercadoLibreApi: MercadoLibreApi,
-        mercadoLibreItemRemoteMapper: MercadoLibreItemRemoteMapper
+        mercadoLibreItemRemoteMapper: MercadoLibreItemRemoteMapper,
+        mercadoLibreItemDetailInfoRemoteMapper: MercadoLibreItemDetailInfoRemoteMapper
     ): MercadoLibreRemoteSource {
-        return MercadoLibreRemoteSourceImpl(mercadoLibreApi, mercadoLibreItemRemoteMapper)
+        return MercadoLibreRemoteSourceImpl(mercadoLibreApi,
+            mercadoLibreItemRemoteMapper,
+            mercadoLibreItemDetailInfoRemoteMapper)
     }
 
     @Singleton
     @Provides
     fun provideMercadoLibreItemRemoteMapper(): MercadoLibreItemRemoteMapper =
         MercadoLibreItemRemoteMapper()
+
+    @Singleton
+    @Provides
+    fun provideMercadoLibreItemDetailInfoRemoteMapper(): MercadoLibreItemDetailInfoRemoteMapper =
+        MercadoLibreItemDetailInfoRemoteMapper()
 
 }

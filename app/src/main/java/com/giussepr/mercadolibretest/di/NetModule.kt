@@ -20,7 +20,7 @@ class NetModule {
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.mercadolibre.com/sites/MCO/")
+            .baseUrl("https://api.mercadolibre.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

@@ -15,6 +15,7 @@ class MercadoLibreItemsPagingManager @Inject constructor(private val repository:
     private var pagingSubject: PublishSubject<PagingDataDomainModel> = PublishSubject.create()
     private var pagingDisposable: Disposable? = null
 
+    private var query: String = ""
     private var offset: Int = 0
     private var isInProgress: Boolean = false
 
@@ -29,12 +30,20 @@ class MercadoLibreItemsPagingManager @Inject constructor(private val repository:
             isInProgress = true
         }
 
+        if (this.query != query) {
+            offset = 0
+        }
+        this.query = query
+
         pagingDisposable?.dispose()
         pagingDisposable = loadPage(query, offset)
             .subscribeOn(Schedulers.io())
             .subscribeBy(onSuccess = {
                 offset = it.offset + PAGE_SIZE
                 pagingSubject.onNext(it)
+
+                resetOffset(it)
+
                 isInProgress = false
             }, onError = {
                 isInProgress = false
@@ -45,7 +54,13 @@ class MercadoLibreItemsPagingManager @Inject constructor(private val repository:
         return pagingSubject
     }
 
+    private fun resetOffset(pagingDataDomainModel: PagingDataDomainModel) {
+        if (pagingDataDomainModel.isLastPage || !pagingDataDomainModel.isLastPage && pagingDataDomainModel.data.isEmpty()) {
+            offset = 0
+        }
+    }
+
     companion object {
-        const val PAGE_SIZE = 10
+        const val PAGE_SIZE = 50
     }
 }

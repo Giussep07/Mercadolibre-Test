@@ -3,6 +3,7 @@ package com.giussepr.mercadolibretest.presentation.home
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
@@ -57,7 +58,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_home, menu)
         searchView = menu.findItem(R.id.item_menu_search).actionView as SearchView
-        searchView.setIconifiedByDefault(true)
+        searchView.queryHint = resourcesManager.getString(R.string.search)
         searchView.setOnQueryTextListener(this)
     }
 
@@ -78,7 +79,23 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>(), HomeView,
     }
 
     override fun navigateToItemDetail(item: MercadoLibreItemUi) {
-        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToItemDetailFragment(item))
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToItemDetailFragment(item, item.title))
+    }
+
+    override fun showEmptyState() {
+        binding.startSearchGroup.isVisible = true
+    }
+
+    override fun hideEmptyState() {
+        binding.startSearchGroup.isGone = true
+    }
+
+    override fun showNoResults() {
+        binding.noResultsGroup.isVisible = true
+    }
+
+    override fun hideNoResults() {
+        binding.noResultsGroup.isGone = true
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {

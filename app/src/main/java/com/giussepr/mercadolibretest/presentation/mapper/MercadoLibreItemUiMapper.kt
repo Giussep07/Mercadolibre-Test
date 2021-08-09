@@ -19,7 +19,10 @@ class MercadoLibreItemUiMapper {
             InstallmentsUiModel(mercadoLibreItem.installments.quantity, mercadoLibreItem.installments.amount),
             mercadoLibreItem.isFreeShipping,
             if (mercadoLibreItem.discountPercentage != null && mercadoLibreItem.discountPercentage > 0) mercadoLibreItem.discountPercentage else null,
-            mercadoLibreItem.isBestSeller
+            mercadoLibreItem.isBestSeller,
+            mercadoLibreItem.condition,
+            mercadoLibreItem.soldQuantity,
+            mercadoLibreItem.availableQuantity
         )
     }
 }

@@ -5,4 +5,8 @@
     <dimen name="space_24">24dp</dimen>
     <dimen name="mercado_libre_item_height">140dp</dimen>
     <dimen name="mercado_libre_item_image_size">108dp</dimen>
+    <dimen name="default_elevation">4dp</dimen>
+    <dimen name="item_detail_image_size">328dp</dimen>
+    <dimen name="logo_mercado_libre_size">134dp</dimen>
+    <dimen name="no_result_icon_size">50dp</dimen>
 </resources>

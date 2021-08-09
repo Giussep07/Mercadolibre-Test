@@ -1,4 +1,4 @@
-package com.giussepr.mercadolibretest.data.network.model.response
+package com.giussepr.mercadolibretest.data.network.model.response.searchResponse
 
 data class Paging(
     val limit: Int,

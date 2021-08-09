@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MercadoLibreTest" parent="Theme.MaterialComponents.Light">
+    <style name="Theme.MercadoLibreTest" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryVariant">@color/yellow_700</item>
@@ -21,6 +21,10 @@
         <item name="android:letterSpacing">0.02</item>
     </style>
 
+    <style name="TextAppearance.MercadoLibre.Body1.SemiBold">
+        <item name="fontFamily">@font/roboto_semi_bold</item>
+    </style>
+
     <style name="TextAppearance.MercadoLibre.Body2" parent="TextAppearance.MercadoLibre.Body1">
         <item name="android:textSize">14sp</item>
         <item name="lineHeight">20sp</item>
@@ -35,6 +39,12 @@
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
+
+    <style name="TextAppearance.MercadoLibre.HeadLine4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
     <!-- endregion Headline TextAppearance -->
 
     <!-- region Caption TextAppearance -->
@@ -44,6 +54,10 @@
         <item name="lineHeight">16sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="TextAppearance.MercadoLibre.Caption.SemiBold">
+        <item name="fontFamily">@font/roboto_semi_bold</item>
     </style>
 
     <style name="TextAppearance.MercadoLibre.Free.Shipping" parent="TextAppearance.MercadoLibre.Caption">
@@ -64,5 +78,9 @@
         <item name="android:background">@drawable/bg_best_seller</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="MercadoLibre.Widget.SearchView" parent="Widget.AppCompat.SearchView">
+
     </style>
 </resources>

@@ -7,4 +7,15 @@
     <string name="discount_percentage">%1$s\%% OFF</string>
     <string name="free_shipping">Envío gratis</string>
     <string name="search">Buscar</string>
+    <string name="condition_sold_quantity">%1$s | %2$s vendidos</string>
+    <string name="condition_new">Nuevo</string>
+    <string name="item_detail_installments">Hasta %d cuotas</string>
+    <string name="stock">Stock disponible</string>
+    <string name="viewpager_pictures_indicator">%1$d / %2$d</string>
+    <plurals name="stock_available">
+        <item quantity="one">%d disponible</item>
+        <item quantity="other">%d disponibles</item>
+    </plurals>
+    <string name="start_search">Busca y encuentra tus articulos favoritos</string>
+    <string name="no_results">No hay publicaciones que coincidan con tu búsqueda.</string>
 </resources>

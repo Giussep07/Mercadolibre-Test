@@ -9,4 +9,8 @@ interface HomeView {
     fun hideLoading()
     fun clearItems()
     fun navigateToItemDetail(item: MercadoLibreItemUi)
+    fun showEmptyState()
+    fun hideEmptyState()
+    fun showNoResults()
+    fun hideNoResults()
 }

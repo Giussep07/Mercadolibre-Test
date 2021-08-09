@@ -12,5 +12,12 @@ data class MercadoLibreItemUi(
     val installments: InstallmentsUiModel,
     val isFreeShipping: Boolean,
     val discountPercentage: Double?,
-    val isBestSeller: Boolean
-): MercadoLibreItemUiItem, Parcelable
+    val isBestSeller: Boolean,
+    val condition: String,
+    val soldQuantity: Int,
+    val availableQuantity: Int
+): MercadoLibreItemUiItem, Parcelable {
+    companion object {
+        const val NEW = "new"
+    }
+}
